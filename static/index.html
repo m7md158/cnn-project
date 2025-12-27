@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification - EuroSAT</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 EuroSAT Image Classification</h1>
+            <p class="subtitle">Classify satellite images using ResNet18-SE or Vision Transformer</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <div class="upload-content" id="uploadContent">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Click to upload or drag and drop</p>
+                        <p class="upload-hint">PNG, JPG, JPEG up to 10MB</p>
+                    </div>
+                </div>
+                
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button class="remove-btn" id="removeImage">×</button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="model-selector">
+                    <label for="modelSelect">Select Model:</label>
+                    <select id="modelSelect">
+                        <option value="resnet">ResNet18-SE</option>
+                        <option value="vit">Vision Transformer (ViT)</option>
+                    </select>
+                </div>
+                
+                <button class="predict-btn" id="predictBtn" disabled>
+                    <span id="predictBtnText">Predict</span>
+                    <span id="predictBtnLoader" class="loader" style="display: none;"></span>
+                </button>
+            </div>
+
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+
+            <div class="results" id="results" style="display: none;">
+                <h2>Prediction Results</h2>
+                <div class="model-name" id="modelName"></div>
+                
+                <div class="top1-result">
+                    <h3>Top Prediction</h3>
+                    <div class="top1-card">
+                        <div class="label-name" id="top1Label"></div>
+                        <div class="confidence-value" id="top1Confidence"></div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="top1Progress"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top5-results">
+                    <h3>Top 5 Predictions</h3>
+                    <div class="top5-list" id="top5List"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
